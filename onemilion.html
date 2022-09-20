@@ -8,45 +8,75 @@
     <title>Counter onemilion</title>
 </head>
 <body>
-    <a href="index.html" style="text-decoration: none;"><h1>testa o croce?</h1></a>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Testa o croce?</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="onemilion.html">Lancia un milione di volte</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container text-center">
-    <div class="row justify-content-around mt-5">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="media/testa.png" class="card-img-top" alt="...">
-                <div class="card-body">  
-                    <div class="d-grid gap-2">
-                        <input type="radio" value="testa" class="btn-check" name="choice" id="success-outlined" autocomplete="off">
-                        <label class="btn btn-success btn-lg disabled" for="success-outlined">testa</label>
+        <div class="row justify-content-around mt-5" id="cards">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="media/testa.png" class="card-img-top" alt="...">
+                    <div class="card-body">  
+                        <div class="d-grid gap-2">
+                            <input type="radio" value="testa" class="btn-check" name="choice" id="success-outlined" autocomplete="off">
+                            <label class="btn btn-success btn-lg disabled" for="success-outlined">testa</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="media/croce.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <input type="radio" class="btn-check" value="croce" name="choice" id="danger-outlined" autocomplete="off">
+                            <label class="btn btn-danger btn-lg disabled" for="danger-outlined">croce</label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="media/croce.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <input type="radio" class="btn-check" value="croce" name="choice" id="danger-outlined" autocomplete="off">
-                        <label class="btn btn-danger btn-lg disabled" for="danger-outlined">croce</label>
-                    </div>
+        <center>
+            <img src="/media/coinFlip.gif" class="mt-5" id="gifHtml" alt="" hidden>
+        </center>
+        <div class="row justify-content-center mt-5">
+            <div class="col">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="button" class="btn btn-primary btn-lg" id="startGame" onclick="countOneMilion()">lancia moneta</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5" id="retry" hidden>
+            <div class="col">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button onclick="location.reload(true)"  class="btn btn-warning btn-lg">riprova?</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col">
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="button" class="btn btn-primary btn-lg" id="startGame" onclick="countOneMilion()">lancia moneta</button>
-            </div>
-        </div>
-    </div>
+    
+    
     <div class="row mt-5">
         <div class="col">
             <h2 id="resultHtml"></h2>
         </div>
     </div>
-</div>
+
+
+
 <div class="container text-center">
     <div class="row justify-content-around">
         <div class="col">
