@@ -1,11 +1,18 @@
-let difficulty = 0.50;
 let resultHtml = document.getElementById("resultHtml");
+// punteggi per giocatori
 let playerScoreHtml = document.getElementById("playerScore");
 let playerScore = 0;
 let computerScoreHtml = document.getElementById("computerScore");
 let computerScore = 0;
 let playerWin = null;
 let startGameButton = document.getElementById("startGame");
+
+// punteggio per countoneMilion
+let croceScoreHtml = document.getElementById("croceScore");
+let testaScoreHtml = document.getElementById("testaScore");
+let testaScore = 0;
+let crociaScore = 0;
+
 
 function updateScore(playerWin){
     if(playerWin == true){
@@ -18,7 +25,6 @@ function updateScore(playerWin){
 }
 
 function setDifficulty(){
-    console.log(difficulty)
     difficulty = document.querySelector("input[name = 'difficulty']:checked").value;}
 
 function endScore(){
@@ -34,9 +40,7 @@ function startGame(){
     setDifficulty();
     /* inizia il gioco, seleziono la faccia, in lancio metto un valore percentuale  */
     let choice = document.querySelector("input[name = 'choice']:checked").value; 
-    console.log(choice)
     let lancio = Math.random();
-    console.log(lancio);
     if(lancio <= difficulty){
         lancio = "testa";
     } else {
@@ -50,4 +54,22 @@ function startGame(){
         updateScore(playerWin=false)
     }
     endScore();
+}
+
+function countOneMilion(){
+    for(let i = 0; i < 100000; i++){
+        let difficulty = 0.50;
+        let lancio = Math.random();
+        if(lancio <= difficulty){
+            lancio = "testa";
+            testaScore++;
+            testaScoreHtml.innerHTML = testaScore;
+        } else {
+            lancio = "croce";
+            crociaScore++;
+            
+        }
+        testaScoreHtml.innerHTML = testaScore;
+        croceScoreHtml.innerHTML = crociaScore;
+    }
 }
