@@ -1,6 +1,5 @@
 # TestaCroce
 
-simple TestaCroce game
 
 ## Description
 
