@@ -16,101 +16,99 @@ let testaScore = 0;
 let croceScore = 0;
 let retryHtml = document.getElementById("retry");
 
-function updateScore(playerWin){
-    if(playerWin == true){
-        playerScore++;
-        playerScoreHtml.innerHTML = playerScore;
-    }else{
-        computerScore++;
-        computerScoreHtml.innerHTML = computerScore;
-    }
+function updateScore(playerWin) {
+  if (playerWin === true) {
+    playerScore++;
+    playerScoreHtml.innerHTML = playerScore;
+  } else {
+    computerScore++;
+    computerScoreHtml.innerHTML = computerScore;
+  }
 }
 
-function setDifficulty(){
-    difficulty = document.querySelector("input[name = 'difficulty']:checked").value;
-    return difficulty;
+function setDifficulty() {
+  difficulty = document.querySelector(
+    "input[name = 'difficulty']:checked"
+  ).value;
+  return difficulty;
 }
 
-function end(){
-    resultHtml.innerHTML = "<center>Gioco finito</center>";
-    startGameButton.disabled = true;
-    retryHtml.hidden = false
+function end() {
+  resultHtml.innerHTML = "<center>Gioco finito</center>";
+  startGameButton.disabled = true;
+  retryHtml.hidden = false;
 }
 
-function endScore(){
-    if(playerScore > 4 || computerScore > 4){
-        end()
-    }
+function endScore() {
+  if (playerScore > 4 || computerScore > 4) {
+    end();
+  }
 }
 
-function compare(difficulty, lancio){
-    let choice = document.querySelector("input[name = 'choice']:checked").value; 
-    if(choice == "testa"){
-        if(lancio >= difficulty){
-            lancio = "testa";
-        } else {
-            lancio = "croce";
-        }
+function compare(difficulty, lancio) {
+  let choice = document.querySelector("input[name = 'choice']:checked").value;
+  if (choice == "testa") {
+    if (lancio >= difficulty) {
+      lancio = "testa";
     } else {
-        if(lancio <= difficulty){
-            lancio = "testa";
-        } else {
-            lancio = "croce";
-        }
+      lancio = "croce";
     }
-    if (lancio == choice){
-        resultHtml.innerHTML = "hai vinto";
-        updateScore(playerWin=true);
+  } else {
+    if (lancio <= difficulty) {
+      lancio = "testa";
     } else {
-        resultHtml.innerHTML = "hai perso";
-        updateScore(playerWin=false)
+      lancio = "croce";
     }
+  }
+  if (lancio == choice) {
+    resultHtml.innerHTML = "hai vinto";
+    updateScore((playerWin = true));
+  } else {
+    resultHtml.innerHTML = "hai perso";
+    updateScore((playerWin = false));
+  }
 }
 
 function loading() {
-    cardsHtml.hidden = false;
-    gifHtml.hidden = true;
-    let difficulty = setDifficulty();
+  cardsHtml.hidden = false;
+  gifHtml.hidden = true;
+  let difficulty = setDifficulty();
+  let lancio = Math.random();
+  compare(difficulty, lancio);
+}
+
+function startGame() {
+  /* controllo se il risultato ha superato il limite  e inserisco la difficolta */
+  endScore();
+  setTimeout(loading, 3500);
+  /* inizia il gioco, seleziono la faccia, in lancio metto un valore percentuale  */
+  cardsHtml.hidden = true;
+  gifHtml.hidden = false;
+  endScore();
+}
+
+function countOneMilion() {
+  setTimeout(counting, 1000);
+
+  cardsHtml.hidden = true;
+  gifHtml.hidden = false;
+}
+
+function counting() {
+  cardsHtml.hidden = false;
+  gifHtml.hidden = true;
+  for (let i = 0; i < 100000; i++) {
+    let difficulty = 0.5;
     let lancio = Math.random();
-    compare(difficulty, lancio);
-}
-
-function startGame(){
-    /* controllo se il risultato ha superato il limite  e inserisco la difficolta */
-    endScore();
-    setTimeout(loading, 3500)
-    /* inizia il gioco, seleziono la faccia, in lancio metto un valore percentuale  */
-    cardsHtml.hidden = true;
-    gifHtml.hidden = false;
-    endScore();
-}
-
-function countOneMilion(){
-    
-    setTimeout(counting, 1000)
-    
-    cardsHtml.hidden = true;
-    gifHtml.hidden = false;
-    
+    if (lancio <= difficulty) {
+      lancio = "testa";
+      testaScore++;
+    } else {
+      lancio = "croce";
+      croceScore++;
     }
-
-
-function counting(){
-    cardsHtml.hidden = false;
-    gifHtml.hidden = true;
-    for(let i = 0; i < 100000; i++){
-        let difficulty = 0.50;
-        let lancio = Math.random();
-        if(lancio <= difficulty){
-            lancio = "testa";
-            testaScore++;
-        } else {
-            lancio = "croce";
-            croceScore++;
-        }
-        testaScoreHtml.innerHTML = testaScore;
-        croceScoreHtml.innerHTML = croceScore;
-        end();
-        
-}
+    testaScoreHtml.innerHTML = testaScore;
+    croceScoreHtml.innerHTML = croceScore;
+    end();
+  }
 }
